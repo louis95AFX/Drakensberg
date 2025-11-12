@@ -68,48 +68,73 @@
     </div>
 
     <header class="bg-white shadow-lg sticky top-0 z-20">
-        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl">
-            
-            <a href="/" class="flex items-center space-x-2">
-                <img src="item2.jpg" alt="Darakensberg Printing And Signage Logo" class="h-10">
-                <span class="text-primary text-2xl font-extrabold tracking-tight">DARAKENSBERG</span>
+    <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl">
+        
+        <a href="/" class="flex items-center space-x-2">
+            <img src="item2.jpg" alt="Darakensberg Printing And Signage Logo" class="h-10">
+            <span class="text-primary text-2xl font-extrabold tracking-tight">DARAKENSBERG</span>
+        </a>
+        
+        <div class="flex items-center space-x-4 text-xl">
+            <a href="/cart" class="text-text-dark hover:text-secondary transition duration-200" aria-label="Go to Shopping Cart">
+                🛒
             </a>
-
-            <!-- <form id="header-search-form" action="/search" method="get" class="flex flex-grow max-w-2xl w-full md:w-auto bg-gray-100 rounded-full overflow-hidden shadow-inner transition duration-300 focus-within:ring-4 focus-within:ring-secondary/50">
-    
-    <label for="search-input-main" class="sr-only">Search Products</label>
-    
-    <input type="text" id="search-input-main" name="q" placeholder="Search products, categories, or brands..." aria-label="Search box"
-            class="flex-grow py-3 px-5 text-base bg-transparent border-none outline-none focus:ring-0 placeholder-gray-500">
-    
-    <button type="submit" aria-label="Start Search"
-            class="flex items-center justify-center bg-primary text-white w-12 h-12 rounded-full m-1 ml-0 font-semibold hover:bg-secondary/90 transition duration-200 shadow-md">
-        🔍
-    </button>
-    
-</form> -->
-
-            <div class="flex items-center space-x-4 text-xl">
-                <a href="/cart" class="text-text-dark hover:text-secondary transition duration-200" aria-label="Go to Shopping Cart">
-                    🛒
+            
+            <button id="open-login-modal-btn" class="text-text-dark hover:text-secondary transition duration-200" aria-label="Open Login or My Account">
+                👤
+            </button>
+            
+            <div class="border-l pl-4 space-x-4 text-xl hidden sm:flex">
+                <a href="https://facebook.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-blue-600 transition duration-200" aria-label="Visit our Facebook Page">
+                    <i class="fa-brands fa-facebook"></i>
                 </a>
-                <a href="/my-account" class="text-text-dark hover:text-secondary transition duration-200" aria-label="Go to My Account page">
-                    👤
+                <a href="https://instagram.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-pink-600 transition duration-200" aria-label="Visit our Instagram Page">
+                    <i class="fa-brands fa-instagram"></i>
                 </a>
-                <div class="border-l pl-4 space-x-4 text-xl hidden sm:flex">
-    <a href="https://facebook.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-blue-600 transition duration-200" aria-label="Visit our Facebook Page">
-        <i class="fa-brands fa-facebook"></i>
-    </a>
-    <a href="https://instagram.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-pink-600 transition duration-200" aria-label="Visit our Instagram Page">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-    <a href="https://youtube.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-red-600 transition duration-200" aria-label="Visit our YouTube Channel">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
-</div>
+                <a href="https://youtube.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-red-600 transition duration-200" aria-label="Visit our YouTube Channel">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+
+<div id="login-modal" class="hidden fixed inset-0 z-[100] bg-gray-900 bg-opacity-70 flex items-center justify-center transition-opacity duration-300" aria-modal="true" role="dialog" aria-labelledby="login-title">
+    
+    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300">
+        
+        <div class="flex justify-between items-center mb-6 border-b pb-3">
+            <h3 id="login-title" class="text-2xl font-bold text-primary">Account Login</h3>
+            <button id="close-login-modal-btn" aria-label="Close modal" class="text-gray-400 hover:text-primary transition duration-200 text-xl">
+                &times;
+            </button>
+        </div>
+
+        <form action="/login" method="post">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username / Email</label>
+                <input type="text" id="username" name="username" required 
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-200">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input type="password" id="password" name="password" required 
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-secondary focus:border-secondary transition duration-200">
+            </div>
+            
+            <button type="submit" 
+                    class="w-full bg-primary text-white py-3 rounded-full font-bold hover:bg-secondary transition duration-300 uppercase shadow-lg">
+                Log In
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-sm">
+            <a href="/forgot-password" class="text-primary hover:text-secondary transition duration-200">Forgot Password?</a>
+            <span class="text-gray-400 mx-2">|</span>
+            <a href="/register" class="text-primary hover:text-secondary transition duration-200">Create Account</a>
+        </div>
+    </div>
+</div>
 
     <nav class="bg-primary shadow-inner">
         <div class="container mx-auto px-4 py-3 max-w-7xl">
@@ -444,6 +469,56 @@
         // ... rest of the existing script content (renderProducts, mobile menu toggle) ...
         
         // Initialize the product rendering
+        renderProducts();
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        // ... existing JavaScript code (product rendering, mobile menu, FAB logic) ...
+
+        // --- NEW MODAL Logic ---
+        const openModalBtn = document.getElementById('open-login-modal-btn');
+        const closeModalBtn = document.getElementById('close-login-modal-btn');
+        const loginModal = document.getElementById('login-modal');
+        const modalContent = loginModal.querySelector('.max-w-md'); // Used for clicking outside
+
+        // Function to open the modal
+        function openModal() {
+            loginModal.classList.remove('hidden');
+            // Remove the body scrollbar when modal is open
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            loginModal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrollbar
+        }
+
+        // Event Listeners
+        if (openModalBtn && closeModalBtn && loginModal) {
+            // Open modal when account button is clicked
+            openModalBtn.addEventListener('click', openModal);
+
+            // Close modal when X button is clicked
+            closeModalBtn.addEventListener('click', closeModal);
+
+            // Close modal when user clicks on the backdrop (outside the content)
+            loginModal.addEventListener('click', (event) => {
+                if (event.target === loginModal) {
+                    closeModal();
+                }
+            });
+
+            // Close modal when the ESC key is pressed
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !loginModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        }
+        
+        // ... rest of the existing script content (FAB logic, renderProducts, mobile menu toggle) ...
+        
+        // Ensure this is still at the end:
         renderProducts();
     });
     </script>
