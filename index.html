@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darakensberg Printing And Signage</title>
+    <meta name="description" content="Darakensberg Printing And Signage, your trusted partner for high-quality printing machines, sublimation products, and personalized gift items. Benefit from special wholesale prices." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        #fab-container.is-open #fab-links {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Make the hint visible when the menu is open */
+    #fab-container.is-open #fab-note {
+        opacity: 1;
+    }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Colors extracted from the provided logo
+                        'primary': '#2D324A', // Dark blue/grey from the logo
+                        'secondary': '#F48E2E', // Orange from the logo
+                        'text-dark': '#212529',
+                    },
+                    borderRadius: {
+                        'xl': '0.75rem',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-text-dark antialiased">
+
+    <div class="bg-gray-900 text-gray-300 text-xs py-2">
+        <div class="container mx-auto px-4 flex justify-between items-center max-w-7xl">
+            <a href="/become-a-dealer" class="hover:text-white transition duration-200">
+                Become a Dealer — Get Special Wholesale Prices
+            </a>
+            <div class="space-x-4">
+                <a href="/my-account" class="hover:text-white transition duration-200">My Account</a>
+                <span class="text-gray-500">•</span>
+                <a href="/cart" class="hover:text-white transition duration-200">Cart (<span id="cart-item-count">0</span>)</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white shadow-lg sticky top-0 z-20">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl">
+            
+            <a href="/" class="flex items-center space-x-2">
+                <img src="item2.jpg" alt="Darakensberg Printing And Signage Logo" class="h-10">
+                <span class="text-primary text-2xl font-extrabold tracking-tight">DARAKENSBERG</span>
+            </a>
+
+            <!-- <form id="header-search-form" action="/search" method="get" class="flex flex-grow max-w-2xl w-full md:w-auto bg-gray-100 rounded-full overflow-hidden shadow-inner transition duration-300 focus-within:ring-4 focus-within:ring-secondary/50">
+    
+    <label for="search-input-main" class="sr-only">Search Products</label>
+    
+    <input type="text" id="search-input-main" name="q" placeholder="Search products, categories, or brands..." aria-label="Search box"
+            class="flex-grow py-3 px-5 text-base bg-transparent border-none outline-none focus:ring-0 placeholder-gray-500">
+    
+    <button type="submit" aria-label="Start Search"
+            class="flex items-center justify-center bg-primary text-white w-12 h-12 rounded-full m-1 ml-0 font-semibold hover:bg-secondary/90 transition duration-200 shadow-md">
+        🔍
+    </button>
+    
+</form> -->
+
+            <div class="flex items-center space-x-4 text-xl">
+                <a href="/cart" class="text-text-dark hover:text-secondary transition duration-200" aria-label="Go to Shopping Cart">
+                    🛒
+                </a>
+                <a href="/my-account" class="text-text-dark hover:text-secondary transition duration-200" aria-label="Go to My Account page">
+                    👤
+                </a>
+                <div class="border-l pl-4 space-x-4 text-xl hidden sm:flex">
+    <a href="https://facebook.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-blue-600 transition duration-200" aria-label="Visit our Facebook Page">
+        <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://instagram.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-pink-600 transition duration-200" aria-label="Visit our Instagram Page">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://youtube.com/darakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-red-600 transition duration-200" aria-label="Visit our YouTube Channel">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+</div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-primary shadow-inner">
+        <div class="container mx-auto px-4 py-3 max-w-7xl">
+            <div class="flex justify-between md:justify-start items-center">
+                <button id="menu-btn" class="text-white text-lg font-semibold md:hidden flex items-center space-x-2" aria-expanded="false" aria-controls="main-nav-links">
+                    <span>☰ Menu</span>
+                </button>
+
+                <div id="main-nav-links" class="hidden md:flex flex-col md:flex-row md:space-x-8 w-full md:w-auto transition-all duration-300">
+                    <a href="#categories" class="text-white font-medium px-2 py-2 md:py-0 hover:text-secondary transition duration-200">All Categories</a>
+                    <a href="#featured" class="text-white font-medium px-2 py-2 md:py-0 hover:text-secondary transition duration-200">Featured Products</a>
+                    <a href="/about-us" class="text-white font-medium px-2 py-2 md:py-0 hover:text-secondary transition duration-200">About Us</a>
+                    <a href="#contact" class="text-white font-medium px-2 py-2 md:py-0 hover:text-secondary transition duration-200">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative text-white min-h-[450px] flex items-center justify-center overflow-hidden" role="banner">
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+    <source src="item1.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="absolute inset-0 bg-gray-900/70"></div>
+
+  <div class="relative container mx-auto px-4 py-16 max-w-7xl z-10">
+    <div class="p-8 rounded-xl max-w-3xl backdrop-blur-sm">
+      <h1 class="text-5xl font-extrabold mb-4 leading-tight">
+        Darakensberg Printing And Signage
+      </h1>
+      <p class="text-xl font-light mb-8 opacity-90">
+        Explore high-quality <strong>sublimation materials</strong>, professional printing machinery, 
+        and custom-made gifts for your business.
+      </p>
+      <a href="shop.html" 
+          class="bg-secondary text-white text-lg font-bold py-3 px-8 rounded-full shadow-xl 
+                 hover:bg-secondary/90 transform hover:scale-105 transition duration-300 uppercase">
+        Explore the Shop
+      </a>
+    </div>
+  </div>
+</section>
+
+
+    <main class="container mx-auto px-4 py-12 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <nav class="categories lg:col-span-1 bg-white p-6 rounded-xl shadow-lg h-fit" id="categories" aria-label="Product Categories">
+                <h3 class="text-2xl font-bold mb-4 text-primary border-b pb-3">Product Categories</h3>
+                <ul class="space-y-2">
+                    <li><a href="/personalized-gifts" class="block p-2 rounded-lg text-text-dark hover:bg-gray-100 hover:text-secondary transition duration-200">Personalized Gifts</a></li>
+                    <li><a href="/photo-albums" class="block p-2 rounded-lg text-text-dark hover:bg-gray-100 hover:text-secondary transition duration-200">Photo Albums</a></li>
+                    <li><a href="/sublimation-products" class="block p-2 rounded-lg text-text-dark hover:bg-gray-100 hover:text-secondary transition duration-200">Sublimation Printing Products</a></li>
+                    <li><a href="/transfer-systems" class="block p-2 rounded-lg text-text-dark hover:bg-gray-100 hover:text-secondary transition duration-200">Transfer Printing Systems</a></li>
+                    <li><a href="/dtf-printing" class="block p-2 rounded-lg text-text-dark hover:bg-gray-100 hover:text-secondary transition duration-200">DTF Printing Solutions</a></li>
+                </ul>
+            </nav>
+
+            <section class="featured lg:col-span-3" id="featured" aria-labelledby="featured-heading">
+                <h2 id="featured-heading" class="text-3xl font-bold mb-6 border-b-4 border-secondary pb-2">
+                Featured Products of the Week
+                </h2>
+                <div class="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="product-grid">
+                    </div>
+            </section>
+        </div>
+    </main>
+
+    <section class="bg-primary text-white py-16" id="contact">
+        <div class="container mx-auto px-4 text-center max-w-7xl">
+            <h3 class="text-4xl font-extrabold mb-4">Looking for a Custom Printing Solution?</h3>
+            <p class="text-xl font-light mb-8 opacity-90">
+                Contact us for orders, dealer registration, or special quotes today.
+            </p>
+            <a href="mailto:info@darakensberg.com" 
+               class="inline-block bg-white text-primary text-lg font-bold py-3 px-8 rounded-full shadow-xl hover:bg-gray-100 transform hover:scale-105 transition duration-300">
+                ✉️ Send an Email
+            </a>
+        </div>
+    </section>
+
+<div id="fab-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-3">
+    
+    <div id="fab-links" class="flex flex-col space-y-3 opacity-0 translate-y-4 transition-all duration-300 pointer-events-none">
+        
+        <a href="/live-chat" aria-label="Start Live Chat" title="Start Live Chat" 
+           class="w-12 h-12 bg-gray-600 text-white rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-secondary/90 transform hover:scale-105 transition duration-200">
+            <i class="fa-solid fa-comments"></i>
+        </a>
+        <a href="https://tiktok.com/darakensberg" target="_blank" rel="noopener" aria-label="Visit our TikTok" title="TikTok"
+           class="w-12 h-12 bg-black text-white rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-secondary/90 transform hover:scale-105 transition duration-200">
+            <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://instagram.com/darakensberg" target="_blank" rel="noopener" aria-label="Visit our Instagram" title="Instagram"
+           class="w-12 h-12 bg-pink-500 text-white rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-secondary/90 transform hover:scale-105 transition duration-200">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        
+    </div>
+
+    <span id="fab-note" class="absolute right-full mr-4 bottom-20 bg-primary/90 text-white text-xs px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap 
+                               opacity-0 transition-opacity duration-300 pointer-events-none">
+        Double click for WhatsApp chat!
+    </span>
+    
+    <button id="main-fab-btn" aria-label="Open communication options menu" 
+       class="w-16 h-16 bg-green-500 text-white rounded-full shadow-2xl flex items-center justify-center text-3xl z-10 transform hover:scale-110 transition duration-300">
+        <i class="fa-brands fa-whatsapp"></i>
+    </button>
+
+</div>
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="footer-grid grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-extrabold text-white mb-4">
+                        <a href="/">DARAKENSBERG</a>
+                    </h4>
+                    <p class="text-sm">Darakensberg Printing And Signage - your trusted source for transfer printing machines, sublimation products, and personalized gifts.</p>
+                </div>
+                <nav aria-label="Footer Navigation">
+                    <h5 class="text-lg font-semibold text-white mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/" class="hover:text-white transition duration-200">Homepage</a></li>
+                        <li><a href="/categories" class="hover:text-white transition duration-200">All Categories</a></li>
+                        <li><a href="/faq" class="hover:text-white transition duration-200">FAQ</a></li>
+                        <li><a href="/contact" class="hover:text-white transition duration-200">Contact</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-4">Contact Us</h5>
+                    <p class="text-sm mb-2">📞 Phone: <a href="tel:+27123456789" class="hover:text-white transition duration-200 font-bold">+27 12 345 6789</a></p>
+                    <p class="text-sm">📍 Address: Drakensberg Region, South Africa</p>
+                </div>
+                <form action="/newsletter-signup" method="post" class="newsletter-form">
+                    <h5 class="text-lg font-semibold text-white mb-4">Subscribe to Our Newsletter</h5>
+                    <input type="email" placeholder="Your Email Address" required
+                            class="w-full p-2 mb-3 rounded-lg bg-gray-700 text-white border border-gray-700 focus:ring-secondary focus:border-secondary outline-none">
+                    <button type="submit" class="w-full bg-secondary text-white py-2 rounded-lg font-semibold hover:bg-secondary/90 transition duration-200">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+            <p class="copyright text-center text-xs pt-4 text-gray-600">
+                © 2025 Darakensberg Printing And Signage. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Product Data (Simulated) - Increased to 12 products
+             const products = [
+                 { id: 1, name: "5-in-1 Heat Press Machine (Pro)", price: 1250.00, imageUrl: 'item1.jpeg' },
+                 { id: 2, name: "Ceramic Mugs (Case of 100)", price: 450.50, imageUrl: 'item32.jpeg' },
+                 { id: 3, name: "A4 Sublimation Paper (Pack 100)", price: 25.99, imageUrl: 'item3.png' },
+                 { id: 4, name: "Metal Photo Frame Blanks (10-pack)", price: 15.00, imageUrl: 'item4.png' },
+                 { id: 5, name: "DTF Film Transfer Roll (A3)", price: 80.75, imageUrl: 'item5.png' },
+                 { id: 6, name: "Blank Silicone Phone Cases (Bulk)", price: 8.50, imageUrl: 'item6.png' },
+                 { id: 7, name: "Industrial Vinyl Cutter 24\"", price: 899.00, imageUrl: 'item7.png' },
+                 { id: 8, name: "Bulk Sublimation Ink Kit (CMYK)", price: 155.90, imageUrl: 'item8.png' },
+                 { id: 9, name: "Personalized Keychain Blanks (Square)", price: 2.10, imageUrl: 'item9.png' },
+                 { id: 10, name: "Professional Cap Press Machine", price: 349.99, imageUrl: 'item10.jpeg' },
+                 { id: 11, name: "DTF Printer Starter Kit 13\"", price: 4999.00, imageUrl: 'item11.jpeg' },
+                 { id: 12, name: "Polyester T-Shirt (White, Large)", price: 6.99, imageUrl: 'item12.jpeg' },
+                 { id: 13, name: "Cylinder Heat Press Attachment", price: 210.00, imageUrl: 'item13.jpeg' },
+                 { id: 14, name: "Sublimation Tumbler Blanks", price: 18.50, imageUrl: 'item14.jpeg' },
+                 { id: 15, name: "A3 Light Transfer Paper", price: 35.00, imageUrl: 'item15.jpeg' },
+                 { id: 16, name: "Customized Puzzle Blanks (100 pcs)", price: 12.00, imageUrl: 'item16.jpeg' },
+                 { id: 17, name: "High-Temp Heat Tape Roll", price: 5.99, imageUrl: 'item17.jpeg' },
+                 { id: 18, name: "Mug Press Machine (Single)", price: 199.99, imageUrl: 'item18.jpg' },
+                 { id: 19, name: "Canvas Tote Bag Blanks (Pack 50)", price: 150.00, imageUrl: 'item19.jpeg' },
+                 { id: 20, name: "DTF Powder Adhesive (1kg)", price: 45.00, imageUrl: 'item20.jpeg' },
+                 { id: 21, name: "Epson EcoTank Conversion Kit", price: 75.50, imageUrl: 'item21.jpeg' },
+                 { id: 22, name: "Leather Patch Blanks (Round)", price: 3.50, imageUrl: 'item22.jpeg' },
+                 { id: 23, name: "A3 Flatbed Heat Press", price: 950.00, imageUrl: 'item23.jpeg' },
+                 { id: 24, name: "Stainless Steel Water Bottles", price: 22.00, imageUrl: 'item24.jpeg' },
+                 { id: 25, name: "Printer Cleaning Solution Kit", price: 19.99, imageUrl: 'item25.jpeg' },
+                 { id: 26, name: "Sublimation Ink Refill Cartridges", price: 40.00, imageUrl: 'item26.jpeg' },
+                 { id: 27, name: "Infrared Thermometer Gun", price: 35.00, imageUrl: 'item27.jpeg' },
+                 { id: 28, name: "Mouse Pad Blanks (Rectangular)", price: 4.50, imageUrl: 'item28.jpeg' },
+                 { id: 29, name: "T-Shirt Alignment Ruler Set", price: 14.99, imageUrl: 'item29.jpeg' },
+                 { id: 30, name: "Heavy-Duty Heat Transfer Paper Cutter", price: 120.00, imageUrl: 'item30.jpg' },
+             ];
+            const productGrid = document.getElementById('product-grid');
+            const cartItemCount = document.getElementById('cart-item-count');
+            let cartCount = 0; // Initialize cart count
+
+            // Function to render products
+            function renderProducts() {
+                if (!productGrid) return;
+
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card bg-white p-3 rounded-xl shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl';
+                    
+                    productCard.innerHTML = `
+                        <div class="h-[180px] mb-3 overflow-hidden rounded-lg bg-gray-50 flex items-center justify-center">
+                            <img src="${product.imageUrl}" alt="${product.name}" loading="lazy" class="object-contain w-full h-full p-2">
+                        </div>
+                        <div class="product-info text-left">
+                            <h3 class="text-base font-semibold mb-1 truncate">
+                                <a href="/product/${product.id}" class="hover:text-primary">${product.name}</a>
+                            </h3>
+                            <p class="text-2xl font-bold text-secondary mb-3">
+                                R${product.price.toFixed(2)}
+                            </p>
+                            <button class="add-to-cart-btn w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary/90 transition duration-200 uppercase" data-product-id="${product.id}">
+                                Add to Cart
+                            </button>
+                        </div>
+                    `;
+                    productGrid.appendChild(productCard);
+                });
+
+                // Add event listeners for 'Add to Cart' buttons
+                document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        cartCount++;
+                        cartItemCount.textContent = cartCount;
+                        e.target.textContent = 'Added! 👍';
+                        e.target.classList.remove('bg-primary', 'hover:bg-primary/90');
+                        e.target.classList.add('bg-green-600', 'hover:bg-green-700');
+                        setTimeout(() => {
+                            e.target.textContent = 'Add to Cart';
+                            e.target.classList.remove('bg-green-600', 'hover:bg-green-700');
+                            e.target.classList.add('bg-primary', 'hover:bg-primary/90');
+                        }, 1500);
+                    });
+                });
+            }
+
+            // 2. Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const navLinks = document.getElementById('main-nav-links');
+
+            if (menuBtn && navLinks) {
+                menuBtn.addEventListener('click', () => {
+                    const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                    
+                    navLinks.classList.toggle('hidden');
+                    
+                    if (navLinks.classList.contains('hidden')) {
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                        menuBtn.querySelector('span').textContent = '☰ Menu';
+                    } else {
+                        menuBtn.setAttribute('aria-expanded', 'true');
+                        menuBtn.querySelector('span').textContent = '✕ Close';
+                        navLinks.classList.add('absolute', 'top-full', 'left-0', 'bg-primary', 'p-4', 'shadow-2xl');
+                    }
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 768) {
+                            navLinks.classList.add('hidden');
+                            menuBtn.setAttribute('aria-expanded', 'false');
+                            menuBtn.querySelector('span').textContent = '☰ Menu';
+                        }
+                    });
+                });
+            }
+
+            // Initialize the product rendering
+            renderProducts();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+        // ... existing product rendering and mobile menu JS ...
+
+        // --- NEW FAB Logic (Click-to-Open and Double-Click-to-Chat) ---
+        const mainFabBtn = document.getElementById('main-fab-btn');
+        const fabContainer = document.getElementById('fab-container');
+        
+        // State variables for double-click logic
+        let fabClickCount = 0;
+        let clickTimeout = null;
+        const whatsappNumber = "+27 68 679 7424"; 
+
+        if (mainFabBtn && fabContainer) {
+            mainFabBtn.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevents immediate closing if clicked near the edge
+                
+                fabClickCount++;
+
+                if (fabClickCount === 1) {
+                    // --- First Click: Toggle Menu ---
+                    fabContainer.classList.toggle('is-open');
+
+                    if (fabContainer.classList.contains('is-open')) {
+                        // Menu is open: Set up listener to close it on outside click
+                        document.addEventListener('click', closeFabMenu);
+                        
+                        // Set timeout to reset click count if no second click occurs soon
+                        clickTimeout = setTimeout(() => {
+                            fabClickCount = 0;
+                        }, 300); // 300ms window for double-click
+                    } else {
+                        // Menu is closed: Clear the timeout and reset count
+                        clearTimeout(clickTimeout);
+                        fabClickCount = 0;
+                        document.removeEventListener('click', closeFabMenu);
+                    }
+
+                } else if (fabClickCount === 2) {
+                    // --- Second Click: Open WhatsApp Chat ---
+                    clearTimeout(clickTimeout); // Prevent timeout from resetting the count
+                    fabClickCount = 0; // Reset count immediately
+                    
+                    // Close the menu if it was open before navigating
+                    fabContainer.classList.remove('is-open');
+                    document.removeEventListener('click', closeFabMenu);
+
+                    // Redirect to WhatsApp
+                    window.open(`https://wa.me/${whatsappNumber.replace(/\s/g, '')}`, '_blank');
+                }
+            });
+        }
+
+        // Function to close the FAB menu when clicking outside
+        function closeFabMenu(event) {
+            // Check if the click occurred outside the FAB container
+            if (!fabContainer.contains(event.target) && fabContainer.classList.contains('is-open')) {
+                fabContainer.classList.remove('is-open');
+                document.removeEventListener('click', closeFabMenu);
+                fabClickCount = 0; // Reset click count on closing
+                clearTimeout(clickTimeout);
+            }
+        }
+        
+        // ... rest of the existing script content (renderProducts, mobile menu toggle) ...
+        
+        // Initialize the product rendering
+        renderProducts();
+    });
+    </script>
+</body>
+</html>
