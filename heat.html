@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DFT Printers & Systems - Drakensberg Printing And Signage</title>
-    <meta name="description" content="Explore Direct-to-Film (DTF) Printers, Shaker/Dryers, Powder, and Film Transfer consumables from Drakensberg Printing And Signage." />
+    <title>Heat Press Machines - Drakensberg Printing And Signage</title>
+    <meta name="description" content="Explore professional clamshell, swing-away, mug, and cap heat press machines for sublimation, DTF, and vinyl transfers from Drakensberg Printing And Signage." />
     <script src="https://cdn.tailwindcss.com"></script>
     <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -68,7 +68,7 @@
     
     <label for="search-input-main" class="sr-only">Search Products</label>
     
-    <input type="text" id="search-input-main" name="q" placeholder="Search DTF printers, film, powder, or ink..." aria-label="Search box"
+    <input type="text" id="search-input-main" name="q" placeholder="Search clamshell, mug press, 5-in-1, or swing-away..." aria-label="Search box"
             class="flex-grow py-3 px-5 text-base bg-transparent border-none outline-none focus:ring-0 placeholder-gray-500">
     
     <button type="submit" aria-label="Start Search"
@@ -108,8 +108,8 @@
     </nav>
 
     <main class="container mx-auto px-4 py-12 max-w-7xl" id="shop">
-        <h1 class="text-4xl font-extrabold mb-8 text-primary">Direct-to-Film (DTF) Printers & Systems</h1>
-        <p class="mb-8 text-lg text-gray-600">Discover our range of Direct-to-Film printing solutions, including professional printers, shakers, high-quality DTF film, powder, and inks.</p>
+        <h1 class="text-4xl font-extrabold mb-8 text-primary">Professional Heat Press Machines</h1>
+        <p class="mb-8 text-lg text-gray-600">Find the perfect Heat Press for your business! We offer versatile clamshell and swing-away flat presses, as well as specialized presses for mugs, caps, and plates, ideal for all transfer types.</p>
         
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
@@ -129,8 +129,8 @@
                     <h3 class="text-lg font-semibold mb-3">Price Range</h3>
                     <div class="flex items-center space-x-2 text-sm">
                         <span class="font-bold text-secondary">R0</span>
-                        <input type="range" id="price-range" min="0" max="15000" value="15000" step="100" class="flex-grow accent-primary cursor-pointer filter-control">
-                        <span class="font-bold text-secondary">R<span id="max-price-display">15000</span>+</span>
+                        <input type="range" id="price-range" min="0" max="8000" value="8000" step="100" class="flex-grow accent-primary cursor-pointer filter-control">
+                        <span class="font-bold text-secondary">R<span id="max-price-display">8,000</span>+</span>
                     </div>
                 </div>
                 
@@ -141,14 +141,14 @@
 
             <section class="lg:col-span-3" aria-labelledby="product-grid-heading">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 id="product-grid-heading" class="text-xl font-semibold text-text-dark">Showing <span id="product-count">0</span> DTF Products</h2>
+                    <h2 id="product-grid-heading" class="text-xl font-semibold text-text-dark">Showing <span id="product-count">0</span> Heat Press Machines</h2>
                 </div>
                 
                 <div class="product-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6" id="product-grid">
                     </div>
                 
                 <div id="no-results" class="hidden text-center p-12 bg-white rounded-xl shadow-md border border-gray-100 mt-8">
-                    <p class="text-2xl text-gray-600 font-medium">😔 No DTF products found matching your criteria.</p>
+                    <p class="text-2xl text-gray-600 font-medium">😔 No heat press machines found matching your criteria.</p>
                     <p class="mt-2 text-gray-500">Try adjusting your filters or price range.</p>
                 </div>
 
@@ -195,16 +195,18 @@
     </footer>
 
     <script>
-        // Data structure focuses on DTF
+        // Data structure focuses on Heat Presses
         const ALL_PRODUCTS = [
-             { id: 23, name: "A3 Flatbed Heat Press", price: 950.00, imageUrl: 'item60.jpg' },
-                 { id: 24, name: "Stainless Steel Water Bottles", price: 22.00, imageUrl: 'item61.jpg' },
-                 { id: 25, name: "Printer Cleaning Solution Kit", price: 19.99, imageUrl: 'item62.jpg' },
-                 { id: 26, name: "Sublimation Ink Refill Cartridges", price: 40.00, imageUrl: 'item62.jpg' },
-                 { id: 27, name: "Infrared Thermometer Gun", price: 35.00, imageUrl: 'item69.jpeg' },
-                 { id: 28, name: "Mouse Pad Blanks (Rectangular)", price: 4.50, imageUrl: 'item70.jpg' },
-                 { id: 29, name: "T-Shirt Alignment Ruler Set", price: 14.99, imageUrl: 'item66.jpg' },
-                 { id: 30, name: "Heavy-Duty Heat Transfer Paper Cutter", price: 120.00, imageUrl: 'item67.jpg' },
+            { id: 401, name: "38x38cm Clamshell Heat Press (Digital)", price: 3100.00, category: 'Flat Presses', imageUrl: 'clamshell_press_38x38.webp' },
+            { id: 402, name: "40x50cm Swing-Away Heat Press (Professional)", price: 7990.00, category: 'Flat Presses', imageUrl: 'swingaway_press_40x50.webp' },
+            { id: 403, name: "8-in-1 Combo Heat Press (Sublimation & Vinyl)", price: 4999.00, category: 'Combo Presses', imageUrl: '8in1_combo_press.webp' },
+            { id: 404, name: "High-Volume Mug Heat Press (4 Station)", price: 5500.00, category: 'Specialty Presses', imageUrl: '4station_mug_press.webp' },
+            { id: 405, name: "Standard Mug Heat Press (Single Station)", price: 1250.00, category: 'Specialty Presses', imageUrl: 'sublimation_mug_press.webp' },
+            { id: 406, name: "Professional Cap Heat Press", price: 1590.00, category: 'Specialty Presses', imageUrl: 'sublimation_cap_press.webp' },
+            { id: 407, name: "Heat Press Silicone Pad (40x50cm Replacement)", price: 350.00, category: 'Accessories', imageUrl: 'silicone_pad_replacement.webp' },
+            { id: 408, name: "Teflon Sheet for Heat Presses (1m x 1m)", price: 180.00, category: 'Accessories', imageUrl: 'teflon_sheet.webp' },
+            { id: 409, name: "A3 Auto-Open Clamshell Press", price: 4200.00, category: 'Flat Presses', imageUrl: 'auto_open_press_a3.webp' },
+            { id: 410, name: "Plate Heat Press Attachment (for Combo Presses)", price: 550.00, category: 'Specialty Presses', imageUrl: 'plate_press_attachment.webp' },
         ];
         
         const productGrid = document.getElementById('product-grid');
@@ -289,13 +291,12 @@
                 );
             }
 
-            // --- 2. Category Filtering (Implicitly filtered to DTF only) ---
-            // Removed explicit category filtering for a focused page.
+            // --- 2. Category Filtering (Implicitly filtered to Heat Presses only) ---
 
             // --- 3. Price Range Filtering ---
-            // Max price range updated to 15000 in HTML
+            // Max price range updated to 8000 in HTML
             const maxPrice = parseFloat(priceRangeInput.value);
-            if (maxPrice < 15000) { // Changed max check to 15000
+            if (maxPrice < 8000) { 
                 filteredProducts = filteredProducts.filter(p => p.price <= maxPrice);
             }
             
@@ -321,14 +322,14 @@
             priceRangeInput.addEventListener('input', (e) => {
                 const rangeValue = parseInt(e.target.value);
                 maxPriceDisplay.textContent = rangeValue.toLocaleString(); // Format number for display
-                if (rangeValue === 15000) {
-                    maxPriceDisplay.textContent = '15,000+';
+                if (rangeValue === 8000) {
+                    maxPriceDisplay.textContent = '8,000+';
                 }
                 applyFilters(); // Instant filter on drag/change
             });
             
             // Set initial display for max price
-            maxPriceDisplay.textContent = '15,000+';
+            maxPriceDisplay.textContent = '8,000+';
 
             // 2. Trigger filter on Sort dropdown change
             document.getElementById('price-sort').addEventListener('change', applyFilters);

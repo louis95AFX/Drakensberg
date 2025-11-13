@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DFT Printers & Systems - Drakensberg Printing And Signage</title>
-    <meta name="description" content="Explore Direct-to-Film (DTF) Printers, Shaker/Dryers, Powder, and Film Transfer consumables from Drakensberg Printing And Signage." />
+    <title>Vinyl Cutters & Plotters - Drakensberg Printing And Signage</title>
+    <meta name="description" content="Find a wide selection of Vinyl Cutters, Plotters, heat transfer vinyl (HTV), adhesive vinyl, and cutting accessories at Drakensberg Printing And Signage." />
     <script src="https://cdn.tailwindcss.com"></script>
     <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -68,7 +68,7 @@
     
     <label for="search-input-main" class="sr-only">Search Products</label>
     
-    <input type="text" id="search-input-main" name="q" placeholder="Search DTF printers, film, powder, or ink..." aria-label="Search box"
+    <input type="text" id="search-input-main" name="q" placeholder="Search vinyl cutters, plotters, HTV, or tools..." aria-label="Search box"
             class="flex-grow py-3 px-5 text-base bg-transparent border-none outline-none focus:ring-0 placeholder-gray-500">
     
     <button type="submit" aria-label="Start Search"
@@ -108,8 +108,8 @@
     </nav>
 
     <main class="container mx-auto px-4 py-12 max-w-7xl" id="shop">
-        <h1 class="text-4xl font-extrabold mb-8 text-primary">Direct-to-Film (DTF) Printers & Systems</h1>
-        <p class="mb-8 text-lg text-gray-600">Discover our range of Direct-to-Film printing solutions, including professional printers, shakers, high-quality DTF film, powder, and inks.</p>
+        <h1 class="text-4xl font-extrabold mb-8 text-primary">Vinyl Cutters & Plotters</h1>
+        <p class="mb-8 text-lg text-gray-600">Explore our comprehensive selection of vinyl cutters and plotters, perfect for custom apparel, signage, decals, and craft projects. We also stock a wide range of cutting vinyls and accessories.</p>
         
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
@@ -129,8 +129,8 @@
                     <h3 class="text-lg font-semibold mb-3">Price Range</h3>
                     <div class="flex items-center space-x-2 text-sm">
                         <span class="font-bold text-secondary">R0</span>
-                        <input type="range" id="price-range" min="0" max="15000" value="15000" step="100" class="flex-grow accent-primary cursor-pointer filter-control">
-                        <span class="font-bold text-secondary">R<span id="max-price-display">15000</span>+</span>
+                        <input type="range" id="price-range" min="0" max="10000" value="10000" step="50" class="flex-grow accent-primary cursor-pointer filter-control">
+                        <span class="font-bold text-secondary">R<span id="max-price-display">10,000</span>+</span>
                     </div>
                 </div>
                 
@@ -141,14 +141,14 @@
 
             <section class="lg:col-span-3" aria-labelledby="product-grid-heading">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 id="product-grid-heading" class="text-xl font-semibold text-text-dark">Showing <span id="product-count">0</span> DTF Products</h2>
+                    <h2 id="product-grid-heading" class="text-xl font-semibold text-text-dark">Showing <span id="product-count">0</span> Vinyl Products</h2>
                 </div>
                 
                 <div class="product-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6" id="product-grid">
                     </div>
                 
                 <div id="no-results" class="hidden text-center p-12 bg-white rounded-xl shadow-md border border-gray-100 mt-8">
-                    <p class="text-2xl text-gray-600 font-medium">😔 No DTF products found matching your criteria.</p>
+                    <p class="text-2xl text-gray-600 font-medium">😔 No vinyl products found matching your criteria.</p>
                     <p class="mt-2 text-gray-500">Try adjusting your filters or price range.</p>
                 </div>
 
@@ -195,16 +195,22 @@
     </footer>
 
     <script>
-        // Data structure focuses on DTF
+        // Data structure focuses on Vinyl Cutters & related products
         const ALL_PRODUCTS = [
-             { id: 23, name: "A3 Flatbed Heat Press", price: 950.00, imageUrl: 'item60.jpg' },
-                 { id: 24, name: "Stainless Steel Water Bottles", price: 22.00, imageUrl: 'item61.jpg' },
-                 { id: 25, name: "Printer Cleaning Solution Kit", price: 19.99, imageUrl: 'item62.jpg' },
-                 { id: 26, name: "Sublimation Ink Refill Cartridges", price: 40.00, imageUrl: 'item62.jpg' },
-                 { id: 27, name: "Infrared Thermometer Gun", price: 35.00, imageUrl: 'item69.jpeg' },
-                 { id: 28, name: "Mouse Pad Blanks (Rectangular)", price: 4.50, imageUrl: 'item70.jpg' },
-                 { id: 29, name: "T-Shirt Alignment Ruler Set", price: 14.99, imageUrl: 'item66.jpg' },
-                 { id: 30, name: "Heavy-Duty Heat Transfer Paper Cutter", price: 120.00, imageUrl: 'item67.jpg' },
+            { id: 201, name: "Industrial Vinyl Cutter 24-inch (61cm)", price: 8990.00, category: 'Vinyl Cutters', imageUrl: 'vinyl_cutter_24inch.webp' },
+            { id: 202, name: "Desktop Craft Vinyl Cutter (A4)", price: 1850.00, category: 'Vinyl Cutters', imageUrl: 'craft_vinyl_cutter.webp' },
+            { id: 203, name: "Heat Transfer Vinyl (HTV) White Roll (50cm x 5m)", price: 180.00, category: 'Vinyl Consumables', imageUrl: 'htv_white_roll.webp' },
+            { id: 204, name: "Heat Transfer Vinyl (HTV) Black Roll (50cm x 5m)", price: 180.00, category: 'Vinyl Consumables', imageUrl: 'htv_black_roll.webp' },
+            { id: 205, name: "Adhesive Vinyl Glossy Red Roll (60cm x 10m)", price: 120.00, category: 'Vinyl Consumables', imageUrl: 'adhesive_vinyl_red.webp' },
+            { id: 206, name: "Vinyl Weeding Tool Kit (5 pcs)", price: 75.00, category: 'Vinyl Accessories', imageUrl: 'weeding_tool_kit.webp' },
+            { id: 207, name: "Replacement Cutter Blades (5-pack)", price: 55.00, category: 'Vinyl Accessories', imageUrl: 'cutter_blades_pack.webp' },
+            { id: 208, name: "Cutting Mat for Desktop Cutter (A4)", price: 90.00, category: 'Vinyl Accessories', imageUrl: 'cutting_mat_a4.webp' },
+            { id: 209, name: "Roll Holder for 24-inch Vinyl Cutter", price: 210.00, category: 'Vinyl Accessories', imageUrl: 'roll_holder.webp' },
+            { id: 210, name: "Reflective Adhesive Vinyl (Silver - 60cm x 2m)", price: 160.00, category: 'Vinyl Consumables', imageUrl: 'reflective_vinyl.webp' },
+            { id: 211, name: "Glitter HTV Rose Gold (50cm x 1m)", price: 95.00, category: 'Vinyl Consumables', imageUrl: 'glitter_htv.webp' },
+            { id: 212, name: "Magnetic Vinyl Sheeting (A3 - 5 pack)", price: 110.00, category: 'Vinyl Consumables', imageUrl: 'magnetic_vinyl.webp' },
+            { id: 213, name: "Heat Press Machine for Vinyl (38x38cm)", price: 2800.00, category: 'Machines', imageUrl: 'heat_press_38x38.webp' },
+            { id: 214, name: "Transfer Tape Clear (30cm x 10m)", price: 65.00, category: 'Vinyl Consumables', imageUrl: 'transfer_tape.webp' },
         ];
         
         const productGrid = document.getElementById('product-grid');
@@ -289,13 +295,13 @@
                 );
             }
 
-            // --- 2. Category Filtering (Implicitly filtered to DTF only) ---
+            // --- 2. Category Filtering (Implicitly filtered to Vinyl only) ---
             // Removed explicit category filtering for a focused page.
 
             // --- 3. Price Range Filtering ---
-            // Max price range updated to 15000 in HTML
+            // Max price range updated to 10000 in HTML
             const maxPrice = parseFloat(priceRangeInput.value);
-            if (maxPrice < 15000) { // Changed max check to 15000
+            if (maxPrice < 10000) { // Changed max check to 10000
                 filteredProducts = filteredProducts.filter(p => p.price <= maxPrice);
             }
             
@@ -321,14 +327,14 @@
             priceRangeInput.addEventListener('input', (e) => {
                 const rangeValue = parseInt(e.target.value);
                 maxPriceDisplay.textContent = rangeValue.toLocaleString(); // Format number for display
-                if (rangeValue === 15000) {
-                    maxPriceDisplay.textContent = '15,000+';
+                if (rangeValue === 10000) {
+                    maxPriceDisplay.textContent = '10,000+';
                 }
                 applyFilters(); // Instant filter on drag/change
             });
             
             // Set initial display for max price
-            maxPriceDisplay.textContent = '15,000+';
+            maxPriceDisplay.textContent = '10,000+';
 
             // 2. Trigger filter on Sort dropdown change
             document.getElementById('price-sort').addEventListener('change', applyFilters);
