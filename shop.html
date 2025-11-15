@@ -15,6 +15,8 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f7f7;
+            /* Prevents horizontal scrollbar when cart is off-screen */
+            overflow-x: hidden; 
         }
         .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -22,6 +24,25 @@
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        /* Custom styles for the cart panel transition */
+        #side-cart {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #side-cart.open {
+            transform: translateX(0);
+        }
+
+        #cart-backdrop {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #cart-backdrop.visible {
+            opacity: 0.5;
         }
     </style>
     <script>
@@ -51,7 +72,7 @@
             <div class="space-x-4">
                 <a href="/my-account" class="hover:text-white transition duration-200">My Account</a>
                 <span class="text-gray-500">•</span>
-                <a href="/cart" class="hover:text-white transition duration-200">Cart (<span id="cart-item-count">0</span>)</a>
+                <a href="#" id="top-bar-cart-link" class="hover:text-white transition duration-200">Cart (<span id="cart-item-count-top">0</span>)</a>
             </div>
         </div>
     </div>
@@ -69,19 +90,20 @@
     <label for="search-input-main" class="sr-only">Search Products</label>
     
     <input type="text" id="search-input-main" name="q" placeholder="Search DTF printers, film, powder, or ink..." aria-label="Search box"
-            class="flex-grow py-3 px-5 text-base bg-transparent border-none outline-none focus:ring-0 placeholder-gray-500">
+                class="flex-grow py-3 px-5 text-base bg-transparent border-none outline-none focus:ring-0 placeholder-gray-500">
     
     <button type="submit" aria-label="Start Search"
-            class="flex items-center justify-center bg-primary text-white w-12 h-12 rounded-full m-1 ml-0 font-semibold hover:bg-secondary/90 transition duration-200 shadow-md">
+                class="flex items-center justify-center bg-primary text-white w-12 h-12 rounded-full m-1 ml-0 font-semibold hover:bg-secondary/90 transition duration-200 shadow-md">
         🔍
     </button>
     
 </form>
 
             <div class="flex items-center space-x-4 text-xl">
-                <a href="/cart" class="text-text-dark hover:text-secondary transition duration-200" aria-label="Go to Shopping Cart">
+                <button id="cart-icon-btn" class="relative text-text-dark hover:text-secondary transition duration-200" aria-label="View Shopping Cart">
                     🛒
-                </a>
+                    <span id="cart-item-count-badge" class="absolute -top-2 -right-2 bg-secondary text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full ring-2 ring-white">0</span>
+                </button>
                 <div class="border-l pl-4 space-x-4 text-xl hidden sm:flex">
     <a href="https://facebook.com/Drakensberg" target="_blank" rel="noopener" class="text-gray-500 hover:text-blue-600 transition duration-200" aria-label="Visit our Facebook Page">
         <i class="fa-brands fa-facebook"></i>
@@ -106,7 +128,7 @@
             </div>
         </div>
     </nav>
-
+    
     <main class="container mx-auto px-4 py-12 max-w-7xl" id="shop">
         <h1 class="text-4xl font-extrabold mb-8 text-primary">Direct-to-Film (DTF) Printers & Systems</h1>
         <p class="mb-8 text-lg text-gray-600">Discover our range of Direct-to-Film printing solutions, including professional printers, shakers, high-quality DTF film, powder, and inks.</p>
@@ -182,7 +204,7 @@
                 <form action="/newsletter-signup" method="post" class="newsletter-form">
                     <h5 class="text-lg font-semibold text-white mb-4">Subscribe to Our Newsletter</h5>
                     <input type="email" placeholder="Your Email Address" required
-                           class="w-full p-2 mb-3 rounded-lg bg-gray-700 text-white border border-gray-700 focus:ring-secondary focus:border-secondary outline-none">
+                            class="w-full p-2 mb-3 rounded-lg bg-gray-700 text-white border border-gray-700 focus:ring-secondary focus:border-secondary outline-none">
                     <button type="submit" class="w-full bg-secondary text-white py-2 rounded-lg font-semibold hover:bg-secondary/90 transition duration-200">
                         Subscribe
                     </button>
@@ -193,40 +215,202 @@
             </p>
         </div>
     </footer>
+    
+    <div id="cart-backdrop" class="fixed inset-0 bg-black z-30 hidden" onclick="toggleCart()"></div>
+
+    <div id="side-cart" class="fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl z-40 flex flex-col">
+        
+        <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-primary"> Your Cart</h2>
+            <button onclick="toggleCart()" class="text-gray-500 hover:text-primary text-2xl" aria-label="Close cart">
+                &times;
+            </button>
+        </div>
+
+        <div id="cart-items-container" class="flex-grow p-6 overflow-y-auto no-scrollbar space-y-4">
+            <p id="empty-cart-message" class="text-center text-gray-500 italic">Your cart is empty.</p>
+        </div>
+
+        <div id="cart-summary" class="p-6 border-t border-gray-200 hidden">
+            <div class="flex justify-between items-center text-lg font-semibold mb-4">
+                <span>Subtotal:</span>
+                <span id="cart-total-display" class="text-secondary">R0.00</span>
+            </div>
+            
+            <a href="checkout.html" class="w-full block text-center bg-secondary text-white py-3 rounded-xl font-bold text-lg hover:bg-secondary/90 transition duration-200 uppercase" aria-label="Proceed to Checkout">
+                Proceed to Checkout
+            </a>
+            <button onclick="toggleCart()" class="w-full mt-2 text-primary py-2 text-sm hover:underline">
+                Continue Shopping
+            </button>
+        </div>
+
+    </div>
     <script>
         // Data structure focuses on DTF
         const ALL_PRODUCTS = [
-                 { id: 23, name: "Epson L18050 A3", price: 35999, imageUrl: 'item1.jpg' },
-                 { id: 24, name: "SET-DTFYAZICI-03 A3 DTF Modifiyeli Tekstil", price: 54753, imageUrl: 'item61.jpg' },
-                 { id: 25, name: "Epson L8160 Ekotank Wifi Fotokopi Tarayıcı A4", price: 28599, imageUrl: 'item2.jpg' },
-                 { id: 26, name: "Epson L11050 A3 Wifi ", price: 23999, imageUrl: 'item3.jpg' },
-                 { id: 27, name: "Epson L8050 A4", price: 17999, imageUrl: 'item4.jpg' },
-                 { id: 28, name: "Epson L3250 Direkwifi", price: 9505, imageUrl: 'item5.jpg' },
-                 { id: 29, name: "Epson L8180 Ekotank Wifi ", price: 38999, imageUrl: 'item6.jpg' },
-                 { id: 30, name: "Epson L805 Mürekkep ", price: 20700, imageUrl: 'item7.jpg' },
-                //  --------------------------------
-                { id: 31, name: "Epson L850", price: 26194, imageUrl: 'item8.jpg' },
-                 { id: 32, name: "Epson L1110", price: 7393, imageUrl: 'item9.jpg' },
-                 { id: 33, name: "EPSON L1300 A3", price: 26954, imageUrl: 'item10.jpg' },
-                 { id: 34, name: "Epson L7180 ", price: 35911, imageUrl: 'item11.jpg' },
-                 { id: 35, name: "A4 DTF Printer", price: 36654, imageUrl: 'item12.jpg' },
-                 { id: 36, name: "DTF 30cm Rulo Destekli Otomatik Pet Film Tozlama ve Kurutma Makinesi", price: 33714, imageUrl: 'item13.jpg' },
-                 { id: 37, name: "Goldpix Pet Film Kurutma Makinesi", price: 14786, imageUrl: 'item14.jpg' },
-                 { id: 38, name: "A3 Basic Modifiyeli DTF Tekstil Baskı Makine Seti", price: 86389, imageUrl: 'item15.jpg' },
+            { id: 15, name: "Epson L850", price: 26194, imageUrl: 'item8.jpg' },
+            { id: 16, name: "Epson L1110", price: 7393, imageUrl: 'item9.jpg' },
+            { id: 17, name: "EPSON L1300 A3", price: 26954, imageUrl: 'item10.jpg' },
+            { id: 18, name: "Epson L7180 ", price: 35911, imageUrl: 'item11.jpg' },
+            { id: 19, name: "A4 DTF Printer", price: 36654, imageUrl: 'item12.jpg' },
+            { id: 20, name: "DTF 30cm Rulo Destekli Otomatik Pet Film Tozlama ve Kurutma Makinesi", price: 33714, imageUrl: 'item13.jpg' },
+            { id: 21, name: "Goldpix Pet Film Kurutma Makinesi", price: 14786, imageUrl: 'item14.jpg' },
+            { id: 22, name: "A3 Basic Modifiyeli DTF Tekstil Baskı Makine Seti", price: 86389, imageUrl: 'item15.jpg' },
+            { id: 23, name: "Epson L18050 A3", price: 35999, imageUrl: 'item1.jpg' },
+            { id: 24, name: "SET-DTFYAZICI-03 A3 DTF Modifiyeli Tekstil", price: 54753, imageUrl: 'item61.jpg' },
+            { id: 25, name: "Epson L8160 Ekotank Wifi Fotokopi Tarayıcı A4", price: 28599, imageUrl: 'item2.jpg' },
+            { id: 26, name: "Epson L11050 A3 Wifi ", price: 23999, imageUrl: 'item3.jpg' },
+            { id: 27, name: "Epson L8050 A4", price: 17999, imageUrl: 'item4.jpg' },
+            { id: 28, name: "Epson L3250 Direkwifi", price: 9505, imageUrl: 'item5.jpg' },
+            { id: 29, name: "Epson L8180 Ekotank Wifi ", price: 38999, imageUrl: 'item6.jpg' },
+            { id: 30, name: "Epson L805 Mürekkep ", price: 20700, imageUrl: 'item7.jpg' },
+            { id: 31, name: "Epson L850", price: 26194, imageUrl: 'item8.jpg' },
+            { id: 32, name: "Epson L1110", price: 7393, imageUrl: 'item9.jpg' },
+            { id: 33, name: "EPSON L1300 A3", price: 26954, imageUrl: 'item10.jpg' },
+            { id: 34, name: "Epson L7180 ", price: 35911, imageUrl: 'item11.jpg' },
+            { id: 35, name: "A4 DTF Printer", price: 36654, imageUrl: 'item12.jpg' },
+            { id: 36, name: "DTF 30cm Rulo Destekli Otomatik Pet Film Tozlama ve Kurutma Makinesi", price: 33714, imageUrl: 'item13.jpg' },
+            { id: 37, name: "Goldpix Pet Film Kurutma Makinesi", price: 14786, imageUrl: 'item14.jpg' },
+            { id: 38, name: "A3 Basic Modifiyeli DTF Tekstil Baskı Makine Seti", price: 86389, imageUrl: 'item15.jpg' },
         ];
         
+        // --- DOM Elements ---
         const productGrid = document.getElementById('product-grid');
-        const cartItemCount = document.getElementById('cart-item-count');
         const productCountDisplay = document.getElementById('product-count');
         const noResultsMessage = document.getElementById('no-results');
         const priceRangeInput = document.getElementById('price-range');
         const maxPriceDisplay = document.getElementById('max-price-display');
 
-        let cartCount = 0; // Initialize cart count
+        // --- Cart Elements ---
+        const cartIconBtn = document.getElementById('cart-icon-btn');
+        const sideCart = document.getElementById('side-cart');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const cartItemCountTop = document.getElementById('cart-item-count-top');
+        const cartItemCountBadge = document.getElementById('cart-item-count-badge');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotalDisplay = document.getElementById('cart-total-display');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const topBarCartLink = document.getElementById('top-bar-cart-link');
+
+        // --- Cart Data Structure ---
+        let cart = []; 
+
+        /**
+         * Renders a single cart item HTML element.
+         * @param {object} item - The cart item object.
+         */
+        function renderCartItem(item) {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'flex items-center space-x-4 p-3 bg-gray-50 rounded-xl shadow-md border border-gray-100';
+            
+            // Calculate the item's line total
+            const lineTotal = item.price * item.quantity;
+
+            // Use Intl.NumberFormat for currency display (Rands, South Africa)
+            const formatter = new Intl.NumberFormat('en-ZA', {
+                style: 'currency',
+                currency: 'ZAR',
+                minimumFractionDigits: 2
+            });
+
+            itemElement.innerHTML = `
+                <img src="${item.imageUrl}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg border p-1 bg-white">
+                <div class="flex-grow min-w-0">
+                    <h4 class="font-semibold text-sm line-clamp-2 text-text-dark">${item.name}</h4>
+                    <div class="flex items-center justify-between mt-1">
+                        <p class="text-xs text-gray-500">${formatter.format(item.price)} x ${item.quantity}</p>
+                        <p class="text-sm font-extrabold text-secondary">${formatter.format(lineTotal)}</p>
+                    </div>
+                    
+                </div>
+                <button onclick="removeFromCart(${item.productId})" class="text-red-500 hover:text-red-700 text-xl flex-shrink-0" aria-label="Remove item from cart">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            `;
+            return itemElement;
+        }
+
+        function updateCartDisplay() {
+            let totalItems = 0;
+            let subtotal = 0;
+
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                document.getElementById('cart-summary').classList.add('hidden');
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                document.getElementById('cart-summary').classList.remove('hidden');
+
+                // 1. Iterate and Render Cart Items
+                cart.forEach(item => {
+                    totalItems += item.quantity;
+                    subtotal += item.price * item.quantity;
+                    
+                    // Append the dynamically created item element
+                    cartItemsContainer.appendChild(renderCartItem(item)); 
+                });
+            }
+
+            // 2. Update all counters and total display
+            const formatter = new Intl.NumberFormat('en-ZA', {
+                style: 'currency',
+                currency: 'ZAR',
+                minimumFractionDigits: 2
+            });
+            
+            cartItemCountTop.textContent = totalItems;
+            cartItemCountBadge.textContent = totalItems;
+            cartTotalDisplay.textContent = formatter.format(subtotal);
+        }
+
+        function addToCart(productId, quantity) {
+            const product = ALL_PRODUCTS.find(p => p.id == productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.productId === productId);
+
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    ...product, // Spreads id, name, price, imageUrl
+                    productId: product.id, // Ensure explicit ID is used
+                    quantity: quantity
+                });
+            }
+            console.log(`Added ${quantity} x ${product.name}. Current cart:`, cart);
+            updateCartDisplay();
+            // Open cart when item is added
+            if (!sideCart.classList.contains('open')) {
+                toggleCart();
+            }
+        }
+
+        window.removeFromCart = function(productId) {
+            const initialLength = cart.length;
+            // Filter out the item to be removed
+            cart = cart.filter(item => item.productId !== productId);
+            
+            if (cart.length < initialLength) {
+                console.log(`Removed item with ID ${productId}.`);
+                updateCartDisplay(); // Refresh the cart after removal
+            }
+        }
+
+        window.toggleCart = function() {
+            const isOpen = sideCart.classList.toggle('open');
+            cartBackdrop.classList.toggle('visible', isOpen);
+            cartBackdrop.classList.toggle('hidden', !isOpen);
+            document.body.classList.toggle('overflow-hidden', isOpen); // Prevent body scroll when cart is open
+        }
+
 
         // Renders a list of products to the main grid
         function renderProducts(productsToRender) {
-            productGrid.innerHTML = ''; // Clear existing products
+            productGrid.innerHTML = '';
             
             if (productsToRender.length === 0) {
                 noResultsMessage.classList.remove('hidden');
@@ -236,56 +420,115 @@
             }
 
             productsToRender.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.className = 'product-card bg-white p-4 rounded-2xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.01]';
-    
-    // * Currency symbol is R (Rands) *
-    productCard.innerHTML = `
-        <div class="h-[180px] mb-4 overflow-hidden rounded-xl bg-gray-100 flex items-center justify-center">
-             <img src="${product.imageUrl}" alt="${product.name}" loading="lazy" class="object-contain w-full h-full p-2 transition duration-500 group-hover:scale-105">
-        </div>
-        
-        <div class="product-info text-left">
-            <h3 class="text-lg font-semibold mb-2 truncate text-text-dark" title="${product.name}">
-                <a href="/product/${product.id}" class="hover:text-primary transition duration-200">${product.name}</a>
-            </h3>
-            
-            <p class="text-xl font-extrabold text-secondary mb-3">
-                R${product.price.toFixed(2)}
-            </p>
-            
-            <button class="add-to-cart-btn w-full bg-primary text-white py-2.5 rounded-full font-bold hover:bg-secondary transition duration-200 uppercase flex items-center justify-center space-x-2" data-product-id="${product.id}">
-                <span>Add to Cart</span> 
-            </button>
-        </div>
-    `;
-    productGrid.appendChild(productCard);
-});
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white p-4 rounded-2xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.01]';
+                
+                // * Currency symbol is R (Rands) *
+                const priceFormatted = product.price.toLocaleString('en-ZA', { minimumFractionDigits: 2 });
+
+                productCard.innerHTML = `
+                    <div class="h-[180px] mb-4 overflow-hidden rounded-xl bg-gray-100 flex items-center justify-center">
+                        <img src="${product.imageUrl}" alt="${product.name}" loading="lazy" class="object-contain w-full h-full p-2 transition duration-500 group-hover:scale-105">
+                    </div>
+                    
+                    <div class="product-info text-left">
+                        <h3 class="text-lg font-semibold mb-2 text-text-dark h-14 overflow-hidden" title="${product.name}">
+                            <a href="/product/${product.id}" class="hover:text-primary transition duration-200">${product.name}</a>
+                        </h3>
+                        
+                        <p class="text-xl font-extrabold text-secondary mb-3">
+                            R${priceFormatted}
+                        </p>
+
+                        <div class="flex items-center justify-between mb-4 space-x-2">
+                            <span class="text-sm font-medium text-text-dark">Quantity:</span>
+                            <div class="flex items-center space-x-1">
+                                <button class="qty-btn qty-minus bg-gray-200 text-text-dark hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold" data-product-id="${product.id}" data-action="minus" aria-label="Decrease quantity">
+                                    -
+                                </button>
+                                <input type="number" id="qty-input-${product.id}" value="1" min="1" max="99" 
+                                    class="w-12 h-8 text-center border border-gray-300 rounded-lg text-sm font-medium focus:ring-secondary focus:border-secondary outline-none p-0"
+                                    aria-label="Item quantity">
+                                <button class="qty-btn qty-plus bg-gray-200 text-text-dark hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold" data-product-id="${product.id}" data-action="plus" aria-label="Increase quantity">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn w-full bg-primary text-white py-2.5 rounded-full font-bold hover:bg-secondary transition duration-200 uppercase flex items-center justify-center space-x-2" data-product-id="${product.id}">
+                            <span>Add to Cart</span> 
+                        </button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
             productCountDisplay.textContent = productsToRender.length;
+            setupQuantityControls();
             setupAddToCartListeners();
         }
 
-        // Sets up 'Add to Cart' button functionality
         function setupAddToCartListeners() {
             document.querySelectorAll('.add-to-cart-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
-                    cartCount++;
-                    cartItemCount.textContent = cartCount;
-                    e.target.textContent = 'Added! 👍';
-                    e.target.classList.remove('bg-primary', 'hover:bg-primary/90');
-                    e.target.classList.add('bg-green-600', 'hover:bg-green-700');
+                    // Find the button if the click was on a child span
+                    const targetButton = e.target.closest('.add-to-cart-btn');
+                    const productId = targetButton.getAttribute('data-product-id');
+                    const qtyInput = document.getElementById(`qty-input-${productId}`);
+                    const quantity = parseInt(qtyInput.value) || 1;
+                    
+                    addToCart(parseInt(productId), quantity);
+                    
+                    // Visual feedback
+                    targetButton.innerHTML = `<span>Added ${quantity}! 👍</span>`;
+                    targetButton.classList.remove('bg-primary', 'hover:bg-secondary');
+                    targetButton.classList.add('bg-green-600', 'hover:bg-green-700');
                     setTimeout(() => {
-                        e.target.textContent = 'Add to Cart';
-                        e.target.classList.remove('bg-green-600', 'hover:bg-green-700');
-                        e.target.classList.add('bg-primary', 'hover:bg-primary/90');
+                        targetButton.innerHTML = '<span>Add to Cart</span>';
+                        targetButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+                        targetButton.classList.add('bg-primary', 'hover:bg-secondary');
                     }, 1500);
                 });
             });
         }
         
+        function setupQuantityControls() {
+            document.querySelectorAll('.qty-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.currentTarget.getAttribute('data-product-id');
+                    const action = e.currentTarget.getAttribute('data-action');
+                    const qtyInput = document.getElementById(`qty-input-${productId}`);
+                    
+                    let currentQty = parseInt(qtyInput.value);
+                    if (isNaN(currentQty)) currentQty = 1;
+
+                    if (action === 'plus') {
+                        currentQty = Math.min(currentQty + 1, 99);
+                    } else if (action === 'minus') {
+                        currentQty = Math.max(currentQty - 1, 1);
+                    }
+                    
+                    qtyInput.value = currentQty;
+                    e.preventDefault(); 
+                });
+            });
+
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                input.addEventListener('change', (e) => {
+                    let value = parseInt(e.target.value);
+                    const min = parseInt(e.target.min);
+                    const max = parseInt(e.target.max);
+
+                    if (isNaN(value) || value < min) {
+                        e.target.value = min;
+                    } else if (value > max) {
+                        e.target.value = max;
+                    }
+                });
+            });
+        }
+
         // Main function to read filters and re-render products
         window.applyFilters = function() {
-            let filteredProducts = [...ALL_PRODUCTS]; // Start with all products
+            let filteredProducts = [...ALL_PRODUCTS]; 
             
             // --- 1. Text Search Filtering ---
             const searchQueryInput = document.getElementById('search-input-main');
@@ -297,17 +540,13 @@
                 );
             }
 
-            // --- 2. Category Filtering (Implicitly filtered to DTF only) ---
-            // Removed explicit category filtering for a focused page.
-
-            // --- 3. Price Range Filtering ---
-            // Max price range updated to 15000 in HTML
+            // --- 2. Price Range Filtering ---
             const maxPrice = parseFloat(priceRangeInput.value);
-            if (maxPrice < 15000) { // Changed max check to 15000
+            if (maxPrice < 15000) { 
                 filteredProducts = filteredProducts.filter(p => p.price <= maxPrice);
             }
             
-            // --- 4. Sorting ---
+            // --- 3. Sorting ---
             const sortOrder = document.getElementById('price-sort').value;
             if (sortOrder === 'low-to-high') {
                 filteredProducts.sort((a, b) => a.price - b.price);
@@ -320,43 +559,39 @@
         
         // Initialize filtering and set up listeners
         document.addEventListener('DOMContentLoaded', () => {
-            // Initial render of all products
+            // Initial render of all products and empty cart
             renderProducts(ALL_PRODUCTS);
+            updateCartDisplay(); 
+
+            // Bind the main cart icon to the toggle function
+            cartIconBtn.addEventListener('click', toggleCart);
+            // Bind the top bar cart link to the toggle function
+            topBarCartLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleCart();
+            });
             
             // --- Instant Filtering Setup ---
-
-            // 1. Link price range slider to display AND trigger instant filter
             priceRangeInput.addEventListener('input', (e) => {
                 const rangeValue = parseInt(e.target.value);
-                maxPriceDisplay.textContent = rangeValue.toLocaleString(); // Format number for display
+                maxPriceDisplay.textContent = rangeValue.toLocaleString(); 
                 if (rangeValue === 15000) {
                     maxPriceDisplay.textContent = '15,000+';
                 }
-                applyFilters(); // Instant filter on drag/change
+                applyFilters(); 
             });
             
-            // Set initial display for max price
             maxPriceDisplay.textContent = '15,000+';
-
-            // 2. Trigger filter on Sort dropdown change
             document.getElementById('price-sort').addEventListener('change', applyFilters);
-
-            // 3. Bind the "Apply Filters" button explicitly
             document.getElementById('apply-filters-btn').addEventListener('click', applyFilters);
-
-
-            // --- Search Functionality Setup ---
-
-            // 4. Handle the Header Search form submission
+            
             const headerSearchForm = document.getElementById('header-search-form');
             if (headerSearchForm) {
                 headerSearchForm.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Stop the default page reload
+                    e.preventDefault(); 
                     applyFilters();
                 });
             }
-
-            // 5. Optionally, bind instant filtering to search input on keyup (for fast typing feedback)
             document.getElementById('search-input-main').addEventListener('keyup', applyFilters);
         });
     </script>
