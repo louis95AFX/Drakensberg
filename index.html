@@ -154,29 +154,29 @@
     </nav>
 
     <section class="relative text-white min-h-[450px] flex items-center justify-center overflow-hidden" role="banner">
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-    <source src="item1.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+        <source src="item1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
 
-  <div class="absolute inset-0 bg-gray-900/70"></div>
+    <div class="absolute inset-0 bg-gray-900/70"></div>
 
-  <div class="relative container mx-auto px-4 py-16 max-w-7xl z-10">
-    <div class="p-8 rounded-xl max-w-3xl backdrop-blur-sm">
-      <h1 class="text-5xl font-extrabold mb-4 leading-tight">
-        Drakensberg Printing And Signage
-      </h1>
-      <p class="text-xl font-light mb-8 opacity-90">
-        Your leading supplier for High-Quality DTF Printers, Vinyl Cutters, 
-        and all professional printing machinery and materials.
-      </p>
-      <a href="shop.html" 
-          class="bg-secondary text-white text-lg font-bold py-3 px-8 rounded-full shadow-xl 
-                  hover:bg-secondary/90 transform hover:scale-105 transition duration-300 uppercase">
-        Explore the Shop
-      </a>
+    <div class="relative container mx-auto px-4 py-16 max-w-7xl z-10">
+        <div class="p-8 rounded-xl max-w-3xl backdrop-blur-sm">
+            <h1 class="text-5xl font-extrabold mb-4 leading-tight">
+                Drakensberg Printing And Signage
+            </h1>
+            <p class="text-xl font-light mb-8 opacity-90">
+                Your leading supplier for High-Quality DTF Printers, Vinyl Cutters, 
+                and all professional printing machinery and materials.
+            </p>
+            <a href="shop.html" 
+                class="bg-secondary text-white text-lg font-bold py-3 px-8 rounded-full shadow-xl 
+                        hover:bg-secondary/90 transform hover:scale-105 transition duration-300 uppercase">
+                Explore the Shop
+            </a>
+        </div>
     </div>
-  </div>
 </section>
 
 
@@ -332,49 +332,121 @@
                  { id: 29, name: "T-Shirt Alignment Ruler Set", price: 14.99, imageUrl: 'item66.jpg' },
                  { id: 30, name: "Heavy-Duty Heat Transfer Paper Cutter", price: 120.00, imageUrl: 'item67.jpg' },
              ];
+            
             const productGrid = document.getElementById('product-grid');
             const cartItemCount = document.getElementById('cart-item-count');
             let cartCount = 0; // Initialize cart count
+
+            // --- Utility Functions for Quantity Controls ---
+            function setupQuantityControls() {
+                document.querySelectorAll('.qty-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const productId = e.currentTarget.getAttribute('data-product-id');
+                        const action = e.currentTarget.getAttribute('data-action');
+                        const qtyInput = document.getElementById(`qty-input-${productId}`);
+                        
+                        let currentQty = parseInt(qtyInput.value);
+                        if (isNaN(currentQty)) currentQty = 1;
+
+                        if (action === 'plus') {
+                            currentQty = Math.min(currentQty + 1, 99);
+                        } else if (action === 'minus') {
+                            currentQty = Math.max(currentQty - 1, 1);
+                        }
+                        
+                        qtyInput.value = currentQty;
+                        e.preventDefault(); 
+                    });
+                });
+
+                document.querySelectorAll('input[type="number"]').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        let value = parseInt(e.target.value);
+                        const min = parseInt(e.target.min);
+                        const max = parseInt(e.target.max);
+
+                        if (isNaN(value) || value < min) {
+                            e.target.value = min;
+                        } else if (value > max) {
+                            e.target.value = max;
+                        }
+                    });
+                });
+            }
 
             // Function to render products
             function renderProducts() {
                 if (!productGrid) return;
 
+                productGrid.innerHTML = ''; // Clear existing content
+
                 products.forEach(product => {
                     const productCard = document.createElement('div');
-                    productCard.className = 'product-card bg-white p-3 rounded-xl shadow-lg border border-gray-100 transition duration-300 hover:shadow-2xl';
+                    // APPLYING SHOP.HTML STYLES HERE
+                    productCard.className = 'product-card bg-white p-4 rounded-2xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.01]';
+                    
+                    const priceFormatted = product.price.toLocaleString('en-ZA', { minimumFractionDigits: 2 });
                     
                     productCard.innerHTML = `
-                        <div class="h-[180px] mb-3 overflow-hidden rounded-lg bg-gray-50 flex items-center justify-center">
-                            <img src="${product.imageUrl}" alt="${product.name}" loading="lazy" class="object-contain w-full h-full p-2">
+                        <div class="h-[180px] mb-4 overflow-hidden rounded-xl bg-gray-100 flex items-center justify-center group">
+                            <img src="${product.imageUrl}" alt="${product.name}" loading="lazy" class="object-contain w-full h-full p-2 transition duration-500 group-hover:scale-105">
                         </div>
+
                         <div class="product-info text-left">
-                            <h3 class="text-base font-semibold mb-1 truncate">
-                                <a href="/product/${product.id}" class="hover:text-primary">${product.name}</a>
+                            <h3 class="text-lg font-semibold mb-2 text-text-dark h-14 overflow-hidden" title="${product.name}">
+                                <a href="/product/${product.id}" class="hover:text-primary transition duration-200">${product.name}</a>
                             </h3>
-                            <p class="text-2xl font-bold text-secondary mb-3">
-                                R${product.price.toFixed(2)}
+
+                            <p class="text-xl font-extrabold text-secondary mb-3">
+                                R${priceFormatted}
                             </p>
-                            <button class="add-to-cart-btn w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary/90 transition duration-200 uppercase" data-product-id="${product.id}">
-                                Add to Cart
+
+                            <div class="flex items-center justify-between mb-4 space-x-2">
+                                <span class="text-sm font-medium text-text-dark">Quantity:</span>
+                                <div class="flex items-center space-x-1">
+                                    <button class="qty-btn qty-minus bg-gray-200 text-text-dark hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold" data-product-id="${product.id}" data-action="minus" aria-label="Decrease quantity">
+                                        -
+                                    </button>
+                                    <input type="number" id="qty-input-${product.id}" value="1" min="1" max="99" 
+                                        class="w-12 h-8 text-center border border-gray-300 rounded-lg text-sm font-medium focus:ring-secondary focus:border-secondary outline-none p-0"
+                                        aria-label="Item quantity">
+                                    <button class="qty-btn qty-plus bg-gray-200 text-text-dark hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center font-bold" data-product-id="${product.id}" data-action="plus" aria-label="Increase quantity">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button class="add-to-cart-btn w-full bg-primary text-white py-2.5 rounded-full font-bold hover:bg-secondary transition duration-200 uppercase flex items-center justify-center space-x-2" data-product-id="${product.id}">
+                                <span>Add to Cart</span> 
                             </button>
                         </div>
                     `;
                     productGrid.appendChild(productCard);
                 });
 
+                // Attach quantity control logic
+                setupQuantityControls();
+
                 // Add event listeners for 'Add to Cart' buttons
                 document.querySelectorAll('.add-to-cart-btn').forEach(button => {
                     button.addEventListener('click', (e) => {
-                        cartCount++;
+                        const targetButton = e.target.closest('.add-to-cart-btn');
+                        const productId = targetButton.getAttribute('data-product-id');
+                        const qtyInput = document.getElementById(`qty-input-${productId}`);
+                        const quantity = parseInt(qtyInput.value) || 1;
+                        
+                        // Simulate cart addition
+                        cartCount += quantity;
                         cartItemCount.textContent = cartCount;
-                        e.target.textContent = 'Added! 👍';
-                        e.target.classList.remove('bg-primary', 'hover:bg-primary/90');
-                        e.target.classList.add('bg-green-600', 'hover:bg-green-700');
+                        
+                        // Visual feedback
+                        targetButton.innerHTML = `<span>Added ${quantity}! 👍</span>`;
+                        targetButton.classList.remove('bg-primary', 'hover:bg-secondary');
+                        targetButton.classList.add('bg-green-600', 'hover:bg-green-700');
                         setTimeout(() => {
-                            e.target.textContent = 'Add to Cart';
-                            e.target.classList.remove('bg-green-600', 'hover:bg-green-700');
-                            e.target.classList.add('bg-primary', 'hover:bg-primary/90');
+                            targetButton.innerHTML = '<span>Add to Cart</span>';
+                            targetButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+                            targetButton.classList.add('bg-primary', 'hover:bg-secondary');
                         }, 1500);
                     });
                 });
@@ -481,9 +553,11 @@
         // ... rest of the existing script content (renderProducts, mobile menu toggle) ...
         
         // Initialize the product rendering
-        renderProducts();
-    });
-    document.addEventListener('DOMContentLoaded', () => {
+        // NOTE: This call is redundant if the previous DOMContentLoaded block already ran it. 
+        // We ensure it runs once by wrapping it in the first block or commenting out this one.
+        // renderProducts(); 
+        });
+        document.addEventListener('DOMContentLoaded', () => {
         // ... existing JavaScript code (product rendering, mobile menu, FAB logic) ...
 
         // --- NEW MODAL Logic ---
@@ -531,8 +605,8 @@
         // ... rest of the existing script content (FAB logic, renderProducts, mobile menu toggle) ...
         
         // Ensure this is still at the end:
-        renderProducts();
-    });
+        // renderProducts(); // Commented out to prevent double execution if previous block ran it.
+        });
     </script>
 </body>
 </html>

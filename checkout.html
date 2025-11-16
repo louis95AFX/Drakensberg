@@ -137,42 +137,49 @@
                     </div>
                     
                     <div id="step-2" class="step-content hidden">
-                        <h2 class="text-2xl font-bold mb-6 text-primary">Shipping Method</h2>
-                        <div class="space-y-4">
-                            
-                            <label class="block border border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition duration-200 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
-                                <input type="radio" name="shipping-method" value="standard" data-cost="0.00" checked class="accent-primary mr-3">
-                                <span class="font-semibold">Standard Shipping (3-5 days)</span>
-                                <span class="float-right font-bold text-secondary"></span> 
-                                <p class="text-sm text-gray-500 mt-1">Available for orders over R5000. Under R5000 is R150.</p>
-                            </label>
-                            
-                            <label class="block border border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition duration-200 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
-                                <input type="radio" name="shipping-method" value="express" data-cost="250.00" class="accent-primary mr-3">
-                                <span class="font-semibold">Express Shipping (1-2 days)</span>
-                                <span class="float-right font-bold text-secondary">R250.00</span>
-                                <p class="text-sm text-gray-500 mt-1">Guaranteed delivery within 48 hours for major centers.</p>
-                            </label>
+    <h2 class="text-2xl font-bold mb-6 text-primary">Shipping Method</h2>
+    <div class="space-y-4">
+        
+        <label class="block border border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition duration-200 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+            <input type="radio" name="shipping-method" value="standard" data-cost="150.00" checked class="accent-primary mr-3">
+            <span class="font-semibold">Standard Delivery (3-5 days) - R150</span>
+            <span class="float-right font-bold text-secondary" id="standard-shipping-price">R150.00</span> 
+            <p class="text-sm text-gray-500 mt-1">Via local courier partners. FREE for orders over R5000.</p>
+        </label>
+        
+        <label class="block border border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition duration-200 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+            <input type="radio" name="shipping-method" value="courier-guy" data-cost="280.00" class="accent-primary mr-3">
+            <span class="font-semibold">The Courier Guy (Overnight/Express)</span>
+            <span class="float-right font-bold text-secondary">R280.00</span>
+            <p class="text-sm text-gray-500 mt-1">1-2 business day delivery guarantee to major centers.</p>
+        </label>
 
-                            <label class="block border border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition duration-200 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
-                                <input type="radio" name="shipping-method" value="pickup" data-cost="0.00" class="accent-primary mr-3">
-                                <span class="font-semibold">Local Pickup</span>
-                                <span class="float-right font-bold text-secondary">FREE</span>
-                                <p class="text-sm text-gray-500 mt-1">Collect from our warehouse in Midrand, Johannesburg.</p>
-                            </label>
-                            
-                        </div>
+        <label class="block border border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition duration-200 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+            <input type="radio" name="shipping-method" value="pudo" data-cost="99.00" class="accent-primary mr-3">
+            <span class="font-semibold">Pudo Locker to Door</span>
+            <span class="float-right font-bold text-secondary">R99.00</span>
+            <p class="text-sm text-gray-500 mt-1">Collection from a Pudo Locker near you (2-3 days). Cheapest rate.</p>
+        </label>
 
-                        <div class="flex justify-between mt-8">
-                            <button type="button" onclick="prevStep(1)" class="text-primary hover:text-secondary transition duration-200 flex items-center space-x-2">
-                                <i class="fa-solid fa-arrow-left"></i>
-                                <span>Return to Information</span>
-                            </button>
-                            <button type="button" onclick="nextStep(3)" class="bg-secondary text-white py-3 px-8 rounded-full font-bold hover:bg-secondary/90 transition duration-200">
-                                Continue to Payment
-                            </button>
-                        </div>
-                    </div>
+        <label class="block border border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition duration-200 has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+            <input type="radio" name="shipping-method" value="pickup" data-cost="0.00" class="accent-primary mr-3">
+            <span class="font-semibold">Local Pickup</span>
+            <span class="float-right font-bold text-secondary">FREE</span>
+            <p class="text-sm text-gray-500 mt-1">Collect from our designated warehouse/office (e.g., Midrand).</p>
+        </label>
+        
+    </div>
+
+    <div class="flex justify-between mt-8">
+        <button type="button" onclick="prevStep(1)" class="text-primary hover:text-secondary transition duration-200 flex items-center space-x-2">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Return to Information</span>
+        </button>
+        <button type="button" onclick="nextStep(3)" class="bg-secondary text-white py-3 px-8 rounded-full font-bold hover:bg-secondary/90 transition duration-200">
+            Continue to Payment
+        </button>
+    </div>
+</div>
 
                     <div id="step-3" class="step-content hidden">
                         <h2 class="text-2xl font-bold mb-6 text-primary">Payment Information</h2>
@@ -217,7 +224,7 @@
                                 <span>Return to Shipping</span>
                             </button>
                             <button type="submit" onclick="placeOrder()" class="bg-primary text-white py-3 px-8 rounded-full font-bold hover:bg-primary/90 transition duration-200 uppercase text-lg">
-                                Place Order (R<span id="final-total">0.00</span>)
+                                <span id="final-total">0.00</span>
                             </button>
                         </div>
                     </div>
@@ -232,7 +239,7 @@
                     <div id="summary-items-container" class="space-y-4 max-h-96 overflow-y-auto pr-2">
                         </div>
                     
-                    <a href="index.html" class="text-sm text-secondary hover:underline mt-4 block">
+                    <a href="shop.html" class="text-sm text-secondary hover:underline mt-4 block">
                         Edit Cart
                     </a>
 
