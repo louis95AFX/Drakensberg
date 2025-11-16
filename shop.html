@@ -249,31 +249,36 @@
     <script>
         // Data structure focuses on DTF
         const ALL_PRODUCTS = [
-            { id: 15, name: "Epson L850", price: 26194, imageUrl: 'item8.jpg' },
-            { id: 16, name: "Epson L1110", price: 7393, imageUrl: 'item9.jpg' },
-            { id: 17, name: "EPSON L1300 A3", price: 26954, imageUrl: 'item10.jpg' },
-            { id: 18, name: "Epson L7180 ", price: 35911, imageUrl: 'item11.jpg' },
-            { id: 19, name: "A4 DTF Printer", price: 36654, imageUrl: 'item12.jpg' },
-            { id: 20, name: "DTF 30cm Rulo Destekli Otomatik Pet Film Tozlama ve Kurutma Makinesi", price: 33714, imageUrl: 'item13.jpg' },
-            { id: 21, name: "Goldpix Pet Film Kurutma Makinesi", price: 14786, imageUrl: 'item14.jpg' },
-            { id: 22, name: "A3 Basic Modifiyeli DTF Tekstil Baskı Makine Seti", price: 86389, imageUrl: 'item15.jpg' },
-            { id: 23, name: "Epson L18050 A3", price: 35999, imageUrl: 'item1.jpg' },
-            { id: 24, name: "SET-DTFYAZICI-03 A3 DTF Modifiyeli Tekstil", price: 54753, imageUrl: 'item61.jpg' },
-            { id: 25, name: "Epson L8160 Ekotank Wifi Fotokopi Tarayıcı A4", price: 28599, imageUrl: 'item2.jpg' },
-            { id: 26, name: "Epson L11050 A3 Wifi ", price: 23999, imageUrl: 'item3.jpg' },
-            { id: 27, name: "Epson L8050 A4", price: 17999, imageUrl: 'item4.jpg' },
-            { id: 28, name: "Epson L3250 Direkwifi", price: 9505, imageUrl: 'item5.jpg' },
-            { id: 29, name: "Epson L8180 Ekotank Wifi ", price: 38999, imageUrl: 'item6.jpg' },
-            { id: 30, name: "Epson L805 Mürekkep ", price: 20700, imageUrl: 'item7.jpg' },
-            { id: 31, name: "Epson L850", price: 26194, imageUrl: 'item8.jpg' },
-            { id: 32, name: "Epson L1110", price: 7393, imageUrl: 'item9.jpg' },
-            { id: 33, name: "EPSON L1300 A3", price: 26954, imageUrl: 'item10.jpg' },
-            { id: 34, name: "Epson L7180 ", price: 35911, imageUrl: 'item11.jpg' },
-            { id: 35, name: "A4 DTF Printer", price: 36654, imageUrl: 'item12.jpg' },
-            { id: 36, name: "DTF 30cm Rulo Destekli Otomatik Pet Film Tozlama ve Kurutma Makinesi", price: 33714, imageUrl: 'item13.jpg' },
-            { id: 37, name: "Goldpix Pet Film Kurutma Makinesi", price: 14786, imageUrl: 'item14.jpg' },
-            { id: 38, name: "A3 Basic Modifiyeli DTF Tekstil Baskı Makine Seti", price: 86389, imageUrl: 'item15.jpg' },
-        ];
+    { id: 15, name: "60cm XP600 Dual Head DTF", price: 130000, imageUrl: 'item84.jpg' },
+    { id: 16, name: "30cm XP600 Dual Head DTF", price: 95000, imageUrl: 'item85.jpg' },
+    { id: 17, name: "PULSE B-300 30cm XP600 Single-Head Heavy Duty DTF Printer", price: 52000, imageUrl: 'item86.jpg' },
+    { id: 18, name: "PULSE B-350 30cm XP600 Single-Head Heavy Duty DTF Printer ", price: 55000, imageUrl: 'item87.jpg' },
+    { id: 19, name: "PULSE A380 A3 Single-Head Heavy Duty DTF Printer", price: 48500, imageUrl: 'item88.jpg' },
+    { id: 20, name: "PULSE A380PRO UV DTF Roll-to-Roll LABEL PRINTER 30cm", price: 65000, imageUrl: 'item89.jpg' },
+    { id: 21, name: "ALPHA A3 XP600 DTF Printer", price: 34000, imageUrl: 'item90.jpg' },
+    { id: 22, name: "ALPHA XP600 A4 (21cm x 29.7cm) DTF Printer", price: 20000, imageUrl: 'item91.jpg' },
+    { id: 23, name: "OVEN + POWDER SHAKER 30cm", price: 17000, imageUrl: 'item92.jpg' },
+    { id: 24, name: "CURATOR OVEN A3 / A4", price: 4800, imageUrl: 'item93.jpg' },
+    { id: 25, name: "L805 A4 UV DTF Flatbed Printer", price: 65000, imageUrl: 'item94.jpg' },
+    { id: 26, name: "L805 A3 UV DTF Flatbed Printer", price: 120000, imageUrl: 'item95.jpg' },
+    { id: 27, name: "PULSE C32-1UV DTF Sticker Printer", price: 80000, imageUrl: 'item96.jpg' },
+    { id: 28, name: "Epson L18050 A3", price: 35999, imageUrl: 'item1.jpg' },
+    { id: 29, name: "SET-DTFYAZICI-03 A3 DTF Modifiyeli Tekstil", price: 54753, imageUrl: 'item61.jpg' },
+    { id: 30, name: "Epson L8160 Ekotank Wifi Fotokopi Tarayıcı A4", price: 28599, imageUrl: 'item2.jpg' },
+    { id: 31, name: "Epson L11050 A3 Wifi ", price: 23999, imageUrl: 'item3.jpg' },
+    { id: 32, name: "Epson L8050 A4", price: 17999, imageUrl: 'item4.jpg' },
+    { id: 33, name: "Epson L3250 Direkwifi", price: 9505, imageUrl: 'item5.jpg' },
+    { id: 34, name: "Epson L8180 Ekotank Wifi ", price: 38999, imageUrl: 'item6.jpg' },
+    { id: 35, name: "Epson L805 Mürekkep ", price: 20700, imageUrl: 'item7.jpg' },
+    { id: 36, name: "Epson L850", price: 26194, imageUrl: 'item8.jpg' },
+    { id: 37, name: "Epson L1110", price: 7393, imageUrl: 'item9.jpg' },
+    { id: 38, name: "EPSON L1300 A3", price: 26954, imageUrl: 'item10.jpg' },
+    { id: 39, name: "Epson L7180 ", price: 35911, imageUrl: 'item11.jpg' },
+    { id: 40, name: "A4 DTF Printer", price: 36654, imageUrl: 'item12.jpg' },
+    { id: 41, name: "DTF 30cm Rulo Destekli Otomatik Pet Film Tozlama ve Kurutma Makinesi", price: 33714, imageUrl: 'item13.jpg' },
+    { id: 42, name: "Goldpix Pet Film Kurutma Makinesi", price: 14786, imageUrl: 'item14.jpg' },
+    { id: 43, name: "A3 Basic Modifiyeli DTF Tekstil Baskı Makine Seti", price: 86389, imageUrl: 'item15.jpg' },
+];
         
         // --- DOM Elements ---
         const productGrid = document.getElementById('product-grid');
@@ -293,8 +298,41 @@
         const emptyCartMessage = document.getElementById('empty-cart-message');
         const topBarCartLink = document.getElementById('top-bar-cart-link');
 
-        // --- Cart Data Structure ---
+        // --- Cart Data Structure (Initialized via Local Storage) ---
         let cart = []; 
+
+        // --- Local Storage Functions ---
+
+        /**
+         * Loads cart items from Local Storage and initializes the 'cart' array.
+         */
+        function loadCartFromLocalStorage() {
+            try {
+                const storedCart = localStorage.getItem('cartItems');
+                // Check if storedCart is not null, then parse it.
+                if (storedCart) {
+                    cart = JSON.parse(storedCart);
+                    console.log("Cart loaded from Local Storage:", cart);
+                }
+            } catch (error) {
+                console.error("Error loading cart from Local Storage:", error);
+                cart = []; // Reset cart on error
+            }
+        }
+
+        /**
+         * Saves the current 'cart' array to Local Storage.
+         */
+        function saveCartToLocalStorage() {
+            try {
+                // localStorage only stores strings, so we must stringify the array
+                localStorage.setItem('cartItems', JSON.stringify(cart));
+                console.log("Cart saved to Local Storage.");
+            } catch (error) {
+                console.error("Error saving cart to Local Storage:", error);
+            }
+        }
+
 
         /**
          * Renders a single cart item HTML element.
@@ -314,6 +352,8 @@
                 minimumFractionDigits: 2
             });
 
+            // The cart item data structure should include: name, price, imageUrl, quantity, productId
+            // The item object passed here already has these properties.
             itemElement.innerHTML = `
                 <img src="${item.imageUrl}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg border p-1 bg-white">
                 <div class="flex-grow min-w-0">
@@ -364,6 +404,9 @@
             cartItemCountTop.textContent = totalItems;
             cartItemCountBadge.textContent = totalItems;
             cartTotalDisplay.textContent = formatter.format(subtotal);
+            
+            // 3. Save to Local Storage after every display update (i.e., cart change)
+            saveCartToLocalStorage();
         }
 
         function addToCart(productId, quantity) {
@@ -372,12 +415,20 @@
 
             const existingItem = cart.find(item => item.productId === productId);
 
+            // The item object to save to the cart should explicitly contain 
+            // the name, price, imageUrl, and quantity.
+            // The ALL_PRODUCTS object spread works well for this.
+            
             if (existingItem) {
                 existingItem.quantity += quantity;
             } else {
+                // Ensure the product.id property is explicitly renamed to productId 
+                // for consistency in the cart array.
                 cart.push({
-                    ...product, // Spreads id, name, price, imageUrl
-                    productId: product.id, // Ensure explicit ID is used
+                    productId: product.id, 
+                    name: product.name, 
+                    price: product.price, 
+                    imageUrl: product.imageUrl, 
                     quantity: quantity
                 });
             }
@@ -396,7 +447,7 @@
             
             if (cart.length < initialLength) {
                 console.log(`Removed item with ID ${productId}.`);
-                updateCartDisplay(); // Refresh the cart after removal
+                updateCartDisplay(); // Refresh the cart and save to LS
             }
         }
 
@@ -559,7 +610,10 @@
         
         // Initialize filtering and set up listeners
         document.addEventListener('DOMContentLoaded', () => {
-            // Initial render of all products and empty cart
+            // 1. Load cart data from Local Storage first
+            loadCartFromLocalStorage();
+
+            // 2. Initial render of all products and cart display
             renderProducts(ALL_PRODUCTS);
             updateCartDisplay(); 
 
